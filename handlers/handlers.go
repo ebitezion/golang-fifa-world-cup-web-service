@@ -18,7 +18,11 @@ func ListWinners(res http.ResponseWriter, req *http.Request) {
 		res.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	res.Write(winners)
+
+	year := req.URL.Query().Get("year")
+	if year == "" {
+		res.Write(winners)
+	}
 }
 
 // AddNewWinner adds new winner to the list
