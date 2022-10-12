@@ -22,6 +22,14 @@ func ListWinners(res http.ResponseWriter, req *http.Request) {
 	year := req.URL.Query().Get("year")
 	if year == "" {
 		res.Write(winners)
+	} else {
+		filteredWinners, err := data.ListAllByYear(year)
+		if err != nil {
+			res.WriteHeader(http.StatusBadRequest)
+			return
+		}
+		res.Write(filteredWinners)
+
 	}
 }
 
