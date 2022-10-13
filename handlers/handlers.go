@@ -41,6 +41,7 @@ func AddNewWinner(res http.ResponseWriter, req *http.Request) {
 		res.WriteHeader(http.StatusUnauthorized)
 	} else {
 		res.WriteHeader(http.StatusCreated)
+		data.AddNewWinner(req.Body)
 	}
 
 }
